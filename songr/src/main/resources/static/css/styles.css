@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital@1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital@1&family=The+Nautigal:wght@700&display=swap');
+
+*{
+  padding: 0;
+  margin: 0;
+  font-family: Cormorant Garamond;
+ background-image: url(https://i.pinimg.com/originals/e3/4c/a1/e34ca164d20ffaa28e7829c9641991c5.jpg);
+
+}
+
+p {
+margin:15px;
+font-size:18px;
+ background:none;
+ color:white;
+}
+h2 {
+  font-size: 50px;
+    position:relative;
+  bottom:0px;
+
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  background-color:white;
+
+
+}
+.background{
+ margin-top: 10px;
+
+}
+
+
+h1::first-letter{
+  font-size:100px;
+  font-family:The Nautigal;
+
+}
+
+
+.R{
+
+  font-size:100px;
+  font-family:The Nautigal;
+  background:none;
+}
+
+footer {
+  position:relative;
+  bottom:10px;
+  font-size: 24px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  background-color: #356967;
+  color: white;
+
+}
