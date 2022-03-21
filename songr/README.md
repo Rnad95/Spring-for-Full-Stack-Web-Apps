@@ -24,7 +24,9 @@ The steps to run this code in your machine:
 2. Open the project in IntelliJ IDE
 3. Then, create the configuration to the App (New Application) and Test (Junit) As the Figure below Show:
 ![Configuration setup](https://i.ibb.co/cJ6kNWs/Screenshot-from-2022-03-06-14-59-53.png)
-4. Run the project and test it in intelliJ environment  
+4. Make sure the dependencies as Shown in figure below:
+![Dependencies](https://i.ibb.co/fM5b2Sz/Screenshot-from-2022-03-21-22-37-49.png)
+5. Run the project and test it in intelliJ environment  
  `OR`
 Run the code in terminal:
 
@@ -54,6 +56,6 @@ You have to get Result similar to the photos below:
 
 ---
 
-## 5. The output of `/allAlbums` route in website
+## 4. The output of `/allAlbums` route in website
 
 ![albums route with ](https://i.ibb.co/RCMWGr4/Screenshot-from-2022-03-21-22-23-23.png)
