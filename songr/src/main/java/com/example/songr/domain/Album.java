@@ -1,11 +1,24 @@
 package com.example.songr.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.validation.Valid;
+
+@Entity
 public class Album {
+    @Id
+    @GeneratedValue
+    private int id;
+
     private String title;
     private String artist;
     private int count;
     private String length;
     private String imageUrl;
+
+    public Album() {
+    }
 
     public Album(String title, String artist, int count, String length, String imageUrl) {
         this.title = title;
@@ -13,6 +26,10 @@ public class Album {
         this.count = count;
         this.length = length+" sec";
         this.imageUrl = imageUrl;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getTitle() {

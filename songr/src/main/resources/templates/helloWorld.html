@@ -1,10 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Hello</title>
+    <link th:href="@{/css/styles.css}" rel="stylesheet"/>
 </head>
 <body>
-<h1>Hello World</h1>
+<header>
+    <nav class="header-nav">
+        <a href="/">Home</a>
+        <a th:href="allAlbum">All Album</a>
+        <a th:href="hello">Hello</a>
+    </nav>
+
+</header>
+<br />
+
+<span>                  </span><h1>Hello World</h1>
+<p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Welcome To Songr Website, to render or add albums in this website please Go to the AllAlbum Page </p>
+
 </body>
 </html>

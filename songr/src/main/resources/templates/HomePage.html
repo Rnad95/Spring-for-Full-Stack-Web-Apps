@@ -7,24 +7,74 @@
 <!--    <script th:src="@{/js/myjs.js}"></script>-->
 </head>
 <body>
-<h1>Welcome, <span class="R">S</span>ong<span class ="R">R</span></h1>
-<h2><b>This website is created to render the data of the Album and the title</b></h2>
+<header>
+    <nav class="header-nav">
+        <a href="/">Home</a>
+        <a th:href="allAlbum">All Album</a>
+        <a th:href="hello">Hello</a>
+
+    </nav>
+
+</header>
+<br />
+<h1 class="Logo">Welcome, <span class="R">S</span>ong<span class ="R">R</span></h1>
+<p>Welcome To Songr Website, to render or add albums in this website please Go to the AllAlbum Page </p>
 <br><br>
-<p>Lorem ipsum dolor sit amet, ad vel altera iudicabit, mea mundi consequat eu. Sonet nonumy intellegat in sed, falli movet decore per cu. Ne wisi aeterno placerat cum, in liber eripuit vel. Mei ea aeque facilis, eruditi civibus adversarium ad sit. Id nisl definitiones usu, ius et malorum vivendum. Cu sit paulo tritani fastidii. Disputando interpretaris et quo.
 
-    Mea ne voluptua moderatius. Mutat sapientem ne nec, no eos tale concludaturque. Sea id sonet phaedrum petentium, ad per mediocrem petentium temporibus. Hendrerit reformidans mea ut, vis id inani recusabo. Inani debet vel at, esse laoreet consequuntur pri an, unum tempor iriure sed an. In mutat movet aliquid ius, maiestatis adipiscing usu ne.
 
-    Usu cu quaestio democritum abhorreant, est no vitae apeirian, vel ut melius laboramus.
-    <br><br>
-<p>Lorem ipsum dolor sit amet, ad vel altera iudicabit, mea mundi consequat eu. Sonet nonumy intellegat in sed, falli movet decore per cu. Ne wisi aeterno placerat cum, in liber eripuit vel. Mei ea aeque facilis, eruditi civibus adversarium ad sit. Id nisl definitiones usu, ius et malorum vivendum. Cu sit paulo tritani fastidii. Disputando interpretaris et quo.
+<br><br>
+    <section class="empInfo">
+        <h3> Album Information </h3>
+        <br>
+        <p> If you dont add the appropriate value the page will appear without a new entity</p>
 
-    Mea ne voluptua moderatius. Mutat sapientem ne nec, no eos tale concludaturque. Sea id sonet phaedrum petentium, ad per mediocrem petentium temporibus. Hendrerit reformidans mea ut, vis id inani recusabo. Inani debet vel at, esse laoreet consequuntur pri an, unum tempor iriure sed an. In mutat movet aliquid ius, maiestatis adipiscing usu ne.
+        <form action="/addAlbum" method="post">
+            <fieldset>
 
-    Usu cu quaestio democritum abhorreant, est no vitae apeirian, vel ut melius laboramus. Dicit principes mea id, his in ancillae incorrupte delicatissimi. Cu per error lucilius. Per quis consul cu, eu modo dolore utamur vis.
+                <legend>Add new Album</legend>
+                <br />
+                <label>   Title   </label><input class="input" type="text" name="title"/><br>
+                <label>  Artist   </label><input class="input" type="text" name="artist"/><br>
+                <label>  Count    </label><input class="input" type="text" name="count"/><br>
+                <label> Length    </label><input class="input" type="text" name="length"/><br>
+                <label>Url Image</label><input class="input" type="text" name="imageUrl"/> <br><br>
+                <button type="submit" class="submit">Submit</button>
+                <br><br>
+            </fieldset>
 
-    Per at odio feugiat, ei est autem possim molestiae. In movet decore altera mel, mel ex graeci adversarium. Cu quod fugit vix, ea vis quem latine invidunt, alienum nominati usu eu. Vidisse veritus mnesarchum ius ex. Nam idque placerat cu, assum impetus scribentur eum ei, his an aliquam debitis. Est ut reque malis.
+        </form>
+    </section>
+<br><br>
+        <form class="empInfo" >
+            <fieldset>
+                <p> Please Note that if you are not in the All Album page the information about the album is not appear</p>
 
-    In vim diceret alterum. Sit ipsum falli possim an, his quando convenire no. Duo semper suscipit deterruisset te. Est ne eirmod quaestio dignissim, graeco accumsan pertinacia no sit. Est ridens quaeque et, an vel fugit molestie oporteat. Ex choro insolens suscipiantur his, posse aliquam nec eu. Cu virtute inciderint dissentiet ius, ne consul ancillae pri.</p>
+                <legend>Album info</legend>
+                <ul th:each="album: ${albumlist}">
+
+    <span>ID</span>
+    <span th:text="${album.id}"></span> <br>
+
+    <span>Title</span>
+    <span th:text="${album.title}"></span> <br>
+
+    <span>Artist</span>
+    <span th:text="${album.artist}"></span><br>
+
+    <span>Count</span>
+    <span th:text="${album.count}"></span><br>
+
+    <span>Length</span>
+    <span th:text="${album.length}"></span><br>
+
+    <Label>Image Url</Label>
+    <span th:text="${album.imageUrl}"></span> <br>
+    <p>****************************************************************</p>
+</ul>
+            </fieldset>
+    </form>
+</ul>
+
 <br><br><br>
 <footer class="background">&copy; All rights reserved.<br></footer>
 </body>
