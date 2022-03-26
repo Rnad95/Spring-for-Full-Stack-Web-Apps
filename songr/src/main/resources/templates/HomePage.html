@@ -12,6 +12,7 @@
         <a href="/">Home</a>
         <a th:href="allAlbum">All Album</a>
         <a th:href="hello">Hello</a>
+        <a th:href="allSong">All song</a>
 
     </nav>
 
@@ -49,14 +50,16 @@
             <fieldset>
                 <p> Please Note that if you are not in the All Album page the information about the album is not appear</p>
 
+
                 <legend>Album info</legend>
                 <ul th:each="album: ${albumlist}">
 
+                    <script>scrt_var=1</script>
     <span>ID</span>
     <span th:text="${album.id}"></span> <br>
 
     <span>Title</span>
-    <span th:text="${album.title}"></span> <br>
+    <span th:text="${album.title}"></span> <br/>
 
     <span>Artist</span>
     <span th:text="${album.artist}"></span><br>
@@ -67,8 +70,16 @@
     <span>Length</span>
     <span th:text="${album.length}"></span><br>
 
-    <Label>Image Url</Label>
-    <span th:text="${album.imageUrl}"></span> <br>
+    <a th:href="@{/album/{id}/songs(id=${album.id})}">More</a>
+    </br>
+    <Label>Image Url</Label></br>
+
+<!--    <a href="album/" onclick="location.href=this.href+ scrt_var+'/songs';return false;">-->
+        <a th:href="allSong">
+        <img th:src="${album.imageUrl}" alt="ImgeURL" width="400" height="300">
+    </a>
+
+    <br>
     <p>****************************************************************</p>
 </ul>
             </fieldset>
