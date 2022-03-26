@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Greetings</title>
+    <link th:href="@{/css/styles.css}" rel="stylesheet"/>
+</head>
+<body>
+<header>
+    <nav class="header-nav">
+<!--        <a href="/">Home</a>-->
+<!--        <a th:href="allAlbum">All Album</a>-->
+<!--        <a th:href="hello">Hello</a>-->
+<!--        <a th:href="allSong">All song</a>-->
+
+    </nav>
+
+</header>
+<br />
+<h1 class="Logo">Welcome, <span class="R">S</span>ong<span class ="R">R</span></h1>
+<br><br>
+<section class="empInfo">
+    <h3> Album Information </h3>
+    <br>
+    <p> If you dont add the appropriate value the page will appear without a new entity</p>
+
+    <form action="/addSong" method="post">
+        <fieldset>
+
+            <legend>Add new song to The Album</legend>
+            <br />
+            <label>   Title   </label><input class="input" type="text" name="title"/><br>
+            <label> Length    </label><input class="input" type="text" name="length"/><br>
+            <label> track Number    </label><input class="input" type="text" name="trackNumber"/><br>
+
+            <button type="submit" class="submit">Submit</button>
+            <br><br>
+        </fieldset>
+
+    </form>
+</section>
+<br><br>
+
+<br><br>
+<form class="empInfo">
+    <fieldset>
+        <legend>Songs Infortmation</legend>
+        <ul th:each="song: ${songsList}">
+
+            <img th:src="${song.getAlbum().imageUrl}" alt="ImgeURL" width="400" height="300">
+            <br>
+            <span>Album: </span>
+            <span th:text="${song.getAlbum().getTitle()}"></span><br>
+            <span>ID</span>
+            <span th:text="${song.id}"></span> <br>
+
+            <span>Title: </span>
+            <span th:text="${song.title}"></span> <br>
+
+            <span>Length: </span>
+            <span th:text="${song.length}"></span><br>
+
+            <span>track Number: </span>
+            <span th:text="${song.trackNumber}"></span><br>
+
+
+
+            <br>
+            <p>****************************************************************</p>
+        </ul>
+    </fieldset>
+</form>
+
+<br><br><br>
+<footer class="background">&copy; All rights reserved.<br></footer>
+</body>
+</html>

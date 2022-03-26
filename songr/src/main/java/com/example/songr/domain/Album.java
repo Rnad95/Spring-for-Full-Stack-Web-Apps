@@ -1,14 +1,22 @@
 package com.example.songr.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.validation.Valid;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
+import javax.persistence.*;
+import java.util.Set;
+
+
+@Setter
+@Getter
 @Entity
 public class Album {
     @Id
     @GeneratedValue
+    @Column(name = "id", nullable = false)
     private int id;
 
     private String title;
@@ -71,6 +79,9 @@ public class Album {
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
+
+    @OneToMany(mappedBy = "album")
+    Set<Song> songs;
 
     @Override
     public String toString() {
