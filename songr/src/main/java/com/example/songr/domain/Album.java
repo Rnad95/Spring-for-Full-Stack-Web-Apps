@@ -10,8 +10,8 @@ import javax.persistence.*;
 import java.util.Set;
 
 
-@Setter
-@Getter
+//@Setter
+//@Getter
 @Entity
 public class Album {
     @Id
