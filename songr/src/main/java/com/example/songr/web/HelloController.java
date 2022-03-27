@@ -225,7 +225,7 @@ public class HelloController {
             return new RedirectView("/login");
         }
 
-        return new RedirectView("/helloWorld");
+        return new RedirectView("/allPost");
     }
 
 
