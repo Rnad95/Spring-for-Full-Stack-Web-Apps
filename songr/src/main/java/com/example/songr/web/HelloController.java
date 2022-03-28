@@ -1,9 +1,14 @@
 package com.example.songr.web;
 
 import com.example.songr.Repositories.AlbumRepository;
+import com.example.songr.Repositories.PostRepository;
 import com.example.songr.Repositories.SongRepository;
+import com.example.songr.Repositories.UsersRepository;
 import com.example.songr.domain.Album;
+import com.example.songr.domain.Post;
 import com.example.songr.domain.Song;
+import com.example.songr.domain.Users;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,9 +16,9 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 
@@ -22,10 +27,14 @@ public class HelloController {
 
     private final AlbumRepository albumRepository;
     private final SongRepository songRepository;
+    private final PostRepository postRepository;
+    private final UsersRepository usersRepository;
 
-    public HelloController(AlbumRepository albumRepository, SongRepository songRepository) {
+    public HelloController(AlbumRepository albumRepository, SongRepository songRepository, PostRepository postRepository, UsersRepository usersRepository) {
         this.albumRepository = albumRepository;
         this.songRepository = songRepository;
+        this.postRepository = postRepository;
+        this.usersRepository = usersRepository;
     }
 
 
@@ -146,6 +155,96 @@ public class HelloController {
         songRepository.save(song);
         return new RedirectView("allSong");
 
+    }
+
+
+    //**************************** Render Posts ************************
+
+    @PostMapping("/addPost")
+    public RedirectView createNewPost( @ModelAttribute @Valid Post post, Errors errors){
+
+        if(errors.hasErrors()){
+
+            return new RedirectView("allPost");
+        }
+        postRepository.save(post);
+        return new RedirectView("allPost");
+
+    }
+
+    @GetMapping("/allPost")
+    public String getAllPost(Model model){
+        model.addAttribute("postList",postRepository.findAll());
+        return "helloWorld";
+    }
+
+    //**************************** User and Posts ***********************
+    @ResponseBody
+    @PostMapping("/users")
+    Users createNewUser(@RequestBody Users newUser){
+        return usersRepository.save(newUser);
+    }
+
+    @ResponseBody
+    @PostMapping("/posts")
+    Post createNewUser(@RequestBody Post newPost){
+        return postRepository.save(newPost);
+    }
+
+    @ResponseBody
+    @GetMapping("/Allposts")
+    List<Post> getAllPosts() {
+        return  postRepository.findAll();
+    }
+
+
+    @ResponseBody
+    @PutMapping("/posts/{postId}/user-post/{userId}")
+    Post userAndPost(@PathVariable Integer postId,@PathVariable Integer userId ){
+        Post post = postRepository.findById(postId).orElseThrow();
+        Users users = usersRepository.findById(userId).orElseThrow();
+        users.setUser(post);
+        usersRepository.save(users);
+//        postRepository.save(post);
+        return post;
+    }
+
+    //********************************* LOG IN ****************************************
+
+    @GetMapping("/login")
+    String loginPage(){
+        return "/login.html";
+    }
+
+    @PostMapping("/login")
+    public RedirectView logInUser(String username, String password)
+    {
+        Users userFromDb = usersRepository.findByUsername(username);
+
+        if ((userFromDb == null) || (!BCrypt.checkpw(password, userFromDb.getHashedPassword()))) {
+            return new RedirectView("/login");
+        }
+
+        return new RedirectView("/allPost");
+    }
+
+
+    //*********************************** Sign UP *************************************
+
+    @GetMapping("/signup")
+    public String getSignupPage()
+    {
+        return "/signup.html";
+    }
+
+    @PostMapping("/signup")
+    public RedirectView signUpUser(Model m, String username, String password)
+    {
+        String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt(12));
+        Users newChatUser = new Users(username, hashedPassword);
+
+        usersRepository.save(newChatUser);
+        return new RedirectView("/login");
     }
 
 

@@ -20,6 +20,18 @@
 <span>                  </span><h1>Hello World</h1>
 <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     Welcome To Songr Website, to render or add albums in this website please Go to the AllAlbum Page </p>
+<form class="empInfo" >
+    <fieldset>
 
+
+        <legend>Posts </legend>
+        <ul th:each="post: ${postList}">
+            <span>Post</span>
+            <span th:text="${post.textContent}"></span> <br>
+            <br>
+            <p>****************************************************************</p>
+        </ul>
+    </fieldset>
+</form>
 </body>
 </html>
